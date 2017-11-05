@@ -268,7 +268,7 @@ Bundle 'easymotion/vim-easymotion'
     map <leader>h <Plug>(easymotion-linebackward)
     map <leader>j <Plug>(easymotion-j)
     map <leader>k <Plug>(easymotion-k)
-    map <leader>l <Plug>(easymotion-linebackward)
+    map <leader>l <Plug>(easymotion-lineforward)
     "重复上一次操作
     map <leader>. <Plug>(easymotion-repeat)
 " }}}
@@ -305,7 +305,6 @@ Bundle 'drn/zoomwin-vim'
 " zoomwin-vim {{{
     nnoremap <silent> <leader>tz :ZoomWin<CR>
 " }}}
-
 
 set history=2000            "history存储长度
 
@@ -371,7 +370,7 @@ set foldlevel=99
 "zc 关闭当前折叠
 "zM 关闭所有折叠
 "zR 打开所有折叠
-"代码折叠自定义快捷键 <leader>空格
+"代码折叠自定义快捷键 <leader>zz
 let g:FoldMethod = 0
 map <leader><Space> :call ToggleFold()<cr>
 fun! ToggleFold()
@@ -386,13 +385,13 @@ endfun
 ""按space 折叠或展开代码
 "nnoremap <Space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-
 set smartindent              "缩进配置
 set autoindent               "打开自动缩进
 " 防止在加入注释时自动跳到行首
 set cindent
 set cinkeys-=0#
 set indentkeys-=0#
+
 
 set tabstop=4               "设置tab键的宽度,等同于空格个数
 set shiftwidth=4            "每一次缩进对应的空格数
@@ -439,7 +438,7 @@ if &term =~ '256color'
     set t_ut=
 endif
 
-"" 自动载入被修改过的文件
+" 自动载入被修改过的文件
 au CursorHold,FocusGained,BufEnter * if getcmdtype() == '' | checktime | endif
 
 "----------------------------文件编码,格式--------------------------------
@@ -515,7 +514,7 @@ nnoremap <leader>v V`}
 "光标总在中间
 "":se so=999
 "禁止光标闪烁
-"set gcr=a:block-blinkon0
+set gcr=a:block-blinkon0
 
 "在处理未保存或只读文件的时候,弹出确认
 set confirm
@@ -585,7 +584,7 @@ map k gk
 "在需要copy的开始行输入ma
 "在需要copy的结束行输入mb
 "在需要paste的行输入mc,然后按<leader>co就paste完成
-nmap <leader>co :'a,'b co 'c<CR>
+" nmap <leader>co :'a,'b co 'c<CR>
 "------delete-----
 "nx/nX 删除光标开始之后/前n个字符
 "dnW/B...删除光标开始n个以控股作为分割符的单词的结尾/开始
@@ -608,6 +607,7 @@ set background=dark
 set t_Co=256
 "colorscheme monokai/molokai/solarized/desert/fisa/onedark/gruvbox
 colorscheme Tomorrow-Night
+
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn LineNr
