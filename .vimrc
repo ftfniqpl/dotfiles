@@ -257,9 +257,53 @@ Bundle 'elzr/vim-json'
     let g:vim_json_syntax_conceal = 0
 " }}}
 
+Bundle 'chemzqm/wxapp.vim'
+" 支持微信小程序开发插件
+
 Bundle 'mattn/emmet-vim'
 " html标签快速完成
 " 详细使用 https://raw.githubusercontent.com/mattn/emmet-vim/master/TUTORIAL
+" emmit-vim for wxapp.vim {{{
+    let g:user_emmet_settings = {
+        \'wxss': {
+        \    'extends': 'css',
+        \},
+        \'wxml': {
+        \    'extends': 'html',
+        \    'aliases': {
+        \        'div': 'view',
+        \        'span': 'text',
+        \    },
+        \    'default_attributes': {
+        \        'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
+        \        'navigator': [{'url': '', 'redirect': 'false'}],
+        \        'scroll-view': [{'bindscroll': ''}],
+        \        'swiper': [{'autoplay': 'false', 'current': '0'}],
+        \        'icon': [{'type': 'success', 'size': '23'}],
+        \        'progress': [{'precent': '0'}],
+        \        'button': [{'size': 'default'}],
+        \        'checkbox-group': [{'bindchange': ''}],
+        \        'checkbox': [{'value': '', 'checked': ''}],
+        \        'form': [{'bindsubmit': ''}],
+        \        'input': [{'type': 'text'}],
+        \        'label': [{'for': ''}],
+        \        'picker': [{'bindchange': ''}],
+        \        'radio-group': [{'bindchange': ''}],
+        \        'radio': [{'checked': ''}],
+        \        'switch': [{'checked': ''}],
+        \        'slider': [{'value': ''}],
+        \        'action-sheet': [{'bindchange': ''}],
+        \        'modal': [{'title': ''}],
+        \        'loading': [{'bindchange': ''}],
+        \        'toast': [{'duration': '1500'}],
+        \        'audio': [{'src': ''}],
+        \        'video': [{'src': ''}],
+        \        'image': [{'src': '', 'mode': 'scaleToFill'}],
+        \    }
+        \},
+    \}
+" }}}
+
 
 Bundle 'easymotion/vim-easymotion'
 " 更高效的移动 [,, + w/fx/h/j/k/l]
@@ -549,8 +593,8 @@ endfunc
 autocmd BufWrite * :call DeleteTrailingWS()
 
 "进入搜索时自动替换规则
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 "换行之后,进入到每行
 map j gj
