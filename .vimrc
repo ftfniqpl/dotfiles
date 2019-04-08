@@ -334,7 +334,7 @@ Bundle 'davidhalter/jedi-vim'
     let g:jedi#show_call_signatures=0
     let g:jedi#auto_vim_configuration=0
 
-    let g:jedi#popup_on_dot = 0  "关闭点的弹出
+    "let g:jedi#popup_on_dot = 0  "关闭点的弹出
     let g:jedi#popup_select_first = 0 "关闭默认选择第一个
 
     let g:jedi#goto_command = "<leader>d" "跳转
