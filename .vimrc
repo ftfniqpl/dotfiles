@@ -334,7 +334,7 @@ Bundle 'davidhalter/jedi-vim'
     let g:jedi#show_call_signatures=0
     let g:jedi#auto_vim_configuration=0
 
-    "let g:jedi#popup_on_dot = 0  "关闭点的弹出
+    let g:jedi#popup_on_dot = 0  "关闭点的弹出
     let g:jedi#popup_select_first = 0 "关闭默认选择第一个
 
     let g:jedi#goto_command = "<leader>d" "跳转
@@ -502,7 +502,9 @@ set formatoptions+=B        "合并两行中文时,不在中间加空格
 autocmd! bufwritepost .vimrc source % "vimrc文件修改之后自动加载
 
 "自动补全,让vim的补全菜单与一般IDE一致
-set completeopt=longest,menu "menu只显示大于一条的,menuone显示包含一条记录
+" set completeopt=longest,menu "menu只显示大于一条的,menuone显示包含一条记录
+" set completeopt=menuone，longest，preview，noinsert
+set completeopt=menuone,longest,noinsert
 
 set wildmenu                "增强模式中的命令行自动完成操作
 set wildignore=*.swp,*.bak,*.o,*~,*.pyc,*.class,.svn "忽略的编译文件
