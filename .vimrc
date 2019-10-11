@@ -22,7 +22,9 @@ Bundle 'scrooloose/syntastic'
     let g:syntasic_check_on_wq=1
     let g:syntastic_enable_highlighting = 1
     let g:syntastic_python_checkers=['pyflakes', 'pep8'] "python语法解析
-    let g:syntastic_python_pep8_args='--ignore=E501,E225,E265,E124,E712'
+    let g:syntastic_python_pep8_args='--ignore=E501,E225,E265,E124,E712,E302,E722'
+
+    "let g:syntastic_javascript_checkers = ['eslint']
 
     "每次自动调用:SyntasticSetLocList,将错误覆盖 quickfix
     let g:syntastic_always_populate_loc_list = 1
@@ -352,6 +354,10 @@ Bundle 'drn/zoomwin-vim'
 " zoomwin-vim {{{
     nnoremap <silent> <leader>tz :ZoomWin<CR>
 " }}}
+
+Bundle 'posva/vim-vue'
+    autocmd FileType vue syntax sync fromstart
+    autocmd BufRead, BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 set history=2000            "history存储长度
 
