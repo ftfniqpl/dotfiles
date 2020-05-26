@@ -22,7 +22,7 @@ Bundle 'scrooloose/syntastic'
     let g:syntasic_check_on_wq=1
     let g:syntastic_enable_highlighting = 1
     let g:syntastic_python_checkers=['pyflakes', 'pep8'] "python语法解析
-    let g:syntastic_python_pep8_args='--ignore=E501,E225,E265,E124,E712,E302,E722'
+    let g:syntastic_python_pep8_args='--ignore=E124,E225,E251,E261,E265,E302,E303,E305,E402,E501,E712,E722'
 
     "let g:syntastic_javascript_checkers = ['eslint']
 
