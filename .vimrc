@@ -687,13 +687,13 @@ function! SetTitle()
 
     if &filetype == 'python' "如果文件类型为python
         call setline(1,'#!/usr/bin/env python')
-        call append(1,'#-*-coding:utf-8 -*-')
-        call append(2,'#')
-        call append(3,'#Author: tony - birdaccp at gmail.com')
-        call append(4,'#Create by:'.strftime('%Y-%m-%d %H:%M:%S'))
-        call append(5,'#Last modified:'.strftime('%Y-%m-%d %H:%M:%S'))
-        call append(6,'#Filename:'.expand('%'))
-        call append(7,'#Description:')
+        call append(1,'# -*-coding:utf-8 -*-')
+        call append(2,'# ')
+        call append(3,'# Author: tony - birdaccp at gmail.com')
+        call append(4,'# Create by:'.strftime('%Y-%m-%d %H:%M:%S'))
+        call append(5,'# Last modified:'.strftime('%Y-%m-%d %H:%M:%S'))
+        call append(6,'# Filename:'.expand('%'))
+        call append(7,'# Description:')
     endif
     normal G
     normal o
@@ -701,7 +701,7 @@ function! SetTitle()
 endfunction
 function! LastModified()
     let line = getline(6)
-    if line =~'^#Last modified'
+    if line =~'^# Last modified'
         exec '1,6 s/Last modified:.*/Last modified:'.strftime('%Y-%m-%d %H:%M:%S').'/e'
     endif
 endfunction
