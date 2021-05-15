@@ -22,7 +22,9 @@ Bundle 'scrooloose/syntastic'
     let g:syntasic_check_on_wq=1
     let g:syntastic_enable_highlighting = 1
     let g:syntastic_python_checkers=['pyflakes', 'pep8'] "python语法解析
-    let g:syntastic_python_pep8_args='--ignore=E501,E225,E265,E124,E712'
+    let g:syntastic_python_pep8_args='--ignore=E124,E225,E251,E261,E265,E302,E303,E305,E402,E501,E712,E722'
+
+    "let g:syntastic_javascript_checkers = ['eslint']
 
     "每次自动调用:SyntasticSetLocList,将错误覆盖 quickfix
     let g:syntastic_always_populate_loc_list = 1
@@ -353,6 +355,10 @@ Bundle 'drn/zoomwin-vim'
     nnoremap <silent> <leader>tz :ZoomWin<CR>
 " }}}
 
+Bundle 'posva/vim-vue'
+    autocmd FileType vue syntax sync fromstart
+    autocmd BufRead, BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+
 set history=2000            "history存储长度
 
 filetype on                 "检测文件类型
@@ -681,13 +687,13 @@ function! SetTitle()
 
     if &filetype == 'python' "如果文件类型为python
         call setline(1,'#!/usr/bin/env python')
-        call append(1,'#-*-coding:utf-8 -*-')
-        call append(2,'#')
-        call append(3,'#Author: tony - birdaccp at gmail.com')
-        call append(4,'#Create by:'.strftime('%Y-%m-%d %H:%M:%S'))
-        call append(5,'#Last modified:'.strftime('%Y-%m-%d %H:%M:%S'))
-        call append(6,'#Filename:'.expand('%'))
-        call append(7,'#Description:')
+        call append(1,'# -*-coding:utf-8 -*-')
+        call append(2,'# ')
+        call append(3,'# Author: tony - birdaccp at gmail.com')
+        call append(4,'# Create by:'.strftime('%Y-%m-%d %H:%M:%S'))
+        call append(5,'# Last modified:'.strftime('%Y-%m-%d %H:%M:%S'))
+        call append(6,'# Filename:'.expand('%'))
+        call append(7,'# Description:')
     endif
     normal G
     normal o
@@ -695,7 +701,7 @@ function! SetTitle()
 endfunction
 function! LastModified()
     let line = getline(6)
-    if line =~'^#Last modified'
+    if line =~'^# Last modified'
         exec '1,6 s/Last modified:.*/Last modified:'.strftime('%Y-%m-%d %H:%M:%S').'/e'
     endif
 endfunction
