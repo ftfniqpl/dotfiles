@@ -259,6 +259,13 @@ Bundle 'elzr/vim-json'
     let g:vim_json_syntax_conceal = 0
 " }}}
 
+"Bundle 'tell-k/vim-autopep8'
+" {{{ 绑定F8键进行python语法进行pep8规范格式化
+    "autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+    "let g:autopep8_ignore="E501,W293"
+    "let g:autopep8_on_save = 1
+" }}}
+
 Bundle 'chemzqm/wxapp.vim'
 " 支持微信小程序开发插件
 
@@ -452,6 +459,11 @@ set softtabstop=4           "按退格键时可以一次删掉的空格数
 set smarttab
 set expandtab               "将tab自动转化成空格
 set shiftround              "缩进时,取整
+
+autocmd FileType html,xml,js,css set ai
+autocmd FileType html,xml,js,css set sw=2
+autocmd FileType html,xml,js,css set ts=2
+autocmd FileType html,xml,js,css set sts=2
 
 set hidden                  "允许在未保存的修改时切换buffer
 set wildmode=list:longest
