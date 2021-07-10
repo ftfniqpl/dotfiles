@@ -343,14 +343,14 @@ Bundle 'davidhalter/jedi-vim'
     let g:jedi#show_call_signatures=0
     let g:jedi#auto_vim_configuration=0
 
-    "let g:jedi#popup_on_dot = 0  "关闭点的弹出
-    let g:jedi#popup_select_first = 0 "关闭默认选择第一个
+    let g:jedi#popup_on_dot = 1  "关闭点的弹出
+    let g:jedi#popup_select_first = 1 "关闭默认选择第一个
 
     let g:jedi#goto_command = "<leader>d" "跳转
     let g:jedi#goto_assignments_command = "<leader>m" "跳转
     let g:jedi#documentation_command = "K"
     let g:jedi#usages_command = "<leader><leader>n" "使用用例
-    " let g:jedi#completions_command = "<TAB>"
+    let g:jedi#completions_command = "<TAB>"
     let g:jedi#rename_command = "<leader>r" "撤销变量
     "自动添加pdb调试
     map <leader>b Oimport pdb; pdb.set_trace() # BREAKPOINT<C-c>
@@ -365,6 +365,25 @@ Bundle 'drn/zoomwin-vim'
 Bundle 'posva/vim-vue'
     autocmd FileType vue syntax sync fromstart
     autocmd BufRead, BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+
+Bundle 'godlygeek/tabular'
+" 对齐
+" tabular {{{
+    nnoremap <silent> <leader>a= :Tabularize /=<CR>
+    vnoremap <silent> <leader>a= :Tabularize /=<CR>
+    nnoremap <silent> <leader>a: :Tabularize /:\zs<CR>
+    vnoremap <silent> <leader>a: :Tabularize /:\zs<CR>
+    nnoremap <silent> <leader>a, :Tabularize /,\zs<CR>
+    vnoremap <silent> <leader>a, :Tabularize /,\zs<CR>
+" }}}
+
+Bundle 'hesselbom/vim-sftp'
+" sftp 上传
+" vim-hsftp {{{
+    nnoremap <silent> <leader>up :UploadFile<CR>
+    nnoremap <silent> <leader>do :DownloadFile<CR>
+    nnoremap <silent> <leader>ud :UploadDir<CR>
+" }}}
 
 set history=2000            "history存储长度
 
@@ -460,10 +479,10 @@ set smarttab
 set expandtab               "将tab自动转化成空格
 set shiftround              "缩进时,取整
 
-autocmd FileType html,xml,js,css set ai
-autocmd FileType html,xml,js,css set sw=2
-autocmd FileType html,xml,js,css set ts=2
-autocmd FileType html,xml,js,css set sts=2
+autocmd FileType html set ai
+autocmd FileType html set sw=2
+autocmd FileType html set ts=2
+autocmd FileType html set sts=2
 
 set hidden                  "允许在未保存的修改时切换buffer
 set wildmode=list:longest
@@ -719,6 +738,7 @@ function! LastModified()
 endfunction
 autocmd BufNewFile *.{py,go,sh} call SetTitle()
 autocmd BufWritePre,FileWritePre *.{py,go} ks|call LastModified()|'s
+autocmd BufNewFile,BufReadPost *.{html} set filetype=html
 
 
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<CR>
