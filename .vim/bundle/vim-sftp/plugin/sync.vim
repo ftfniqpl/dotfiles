@@ -39,7 +39,7 @@ function UploadSyncFile()
   let conf = GetConf()
   let conf['local'] = fnamemodify(g:sftp_sync, ':h:p') . '/'
   let conf['localpath'] = l_currentPath
-  let conf['remotepath'] = conf['remote'] . conf['localpath'][strlen(conf['local']):]
+  let conf['remotepath'] = conf['remote'] . conf['localpath']
 
   " 若当前文件不可读，直接返回
   if !filereadable(l_currentPath)
@@ -65,7 +65,7 @@ function! DownloadSyncFile()
   let conf = GetConf()
   let conf['local'] = fnamemodify(g:sftp_sync, ':h:p') . '/'
   let conf['localpath'] = l_currentPath
-  let conf['remotepath'] = conf['remote'] . conf['localpath'][strlen(conf['local']):]
+  let conf['remotepath'] = conf['remote'] . conf['localpath']
 
   let action = printf('get %s %s', conf['remotepath'], conf['localpath'])
   let cmd = printf('expect -c "set timeout 5; spawn sftp -P %s %s@%s; expect \"*assword:\"; send %s\r; expect \"sftp>\"; send \" %s\r\"; expect -re \"100%\"; send \"exit\r\";"', conf['port'], conf['user'], conf['host'], conf['pass'], action)

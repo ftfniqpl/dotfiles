@@ -350,7 +350,7 @@ Bundle 'davidhalter/jedi-vim'
     let g:jedi#goto_assignments_command = "<leader>m" "跳转
     let g:jedi#documentation_command = "K"
     let g:jedi#usages_command = "<leader><leader>n" "使用用例
-    let g:jedi#completions_command = "<TAB>"
+    "let g:jedi#completions_command = "<C-i>"
     let g:jedi#rename_command = "<leader>r" "撤销变量
     "自动添加pdb调试
     map <leader>b Oimport pdb; pdb.set_trace() # BREAKPOINT<C-c>
