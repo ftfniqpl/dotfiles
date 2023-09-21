@@ -343,7 +343,7 @@ Bundle 'davidhalter/jedi-vim'
     let g:jedi#show_call_signatures=0
     let g:jedi#auto_vim_configuration=0
 
-    let g:jedi#popup_on_dot = 1  "关闭点的弹出
+    let g:jedi#popup_on_dot = 0  "关闭点的弹出
     let g:jedi#popup_select_first = 1 "关闭默认选择第一个
 
     let g:jedi#goto_command = "<leader>d" "跳转
@@ -483,6 +483,14 @@ autocmd FileType html set ai
 autocmd FileType html set sw=2
 autocmd FileType html set ts=2
 autocmd FileType html set sts=2
+autocmd FileType js set ai
+autocmd FileType js set sw=2
+autocmd FileType js set ts=2
+autocmd FileType js set sts=2
+autocmd FileType css set ai
+autocmd FileType css set sw=2
+autocmd FileType css set ts=2
+autocmd FileType css set sts=2
 
 set hidden                  "允许在未保存的修改时切换buffer
 set wildmode=list:longest

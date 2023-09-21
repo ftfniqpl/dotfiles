@@ -32,7 +32,7 @@ if g:jedi#auto_initialization
         execute 'nnoremap <silent> <buffer>'.g:jedi#documentation_command.' :call jedi#show_documentation()<CR>'
     endif
 
-    if g:jedi#show_call_signatures > 0
+    if g:jedi#show_call_signatures > 0 && has('conceal')
         call jedi#configure_call_signatures()
     endif
 
@@ -50,4 +50,8 @@ if g:jedi#auto_initialization
             autocmd! InsertLeave <buffer> if pumvisible() == 0|pclose|endif
         augroup END
     endif
+    augroup jedi_usages
+        autocmd! TextChanged <buffer> call jedi#remove_usages()
+        autocmd! InsertEnter <buffer> call jedi#remove_usages()
+    augroup END
 endif
