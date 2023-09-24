@@ -1,46 +1,45 @@
-#### QIN-SYNC
+## vim sftp
 
-> 简单的 vim sftp 上传插件, inspired by [vim-hsftp](https://github.com/hesselbom/vim-hsftp)
+https://github.com/AaronFlower/vim-sftp
 
-        ____  _  _          _______  __     ____ 
-       /  _ \/ \/ \  /|    / ___\  \// \  //   _\
-       | / \|| || |\ ||____|    \\  /| |\ ||  /  
-       | \_\|| || | \|\____\___ |/ / | | \||  \_ 
-       \____\\_/\_/  \|    \____/_/  \_/  \\____/
-                                          
+在文件保存的时候检查当前目录以及遍历到根目录是否有 `sftp-config.json` 文件。如果有则根据根据文件上传到到对应服务器上。
+对于文件的上传可以放在一个 map 中进行缓存。
 
-#### 命令介绍
 
-`:QinSync`     上传文件至服务器
-`:QinToggle`   打开/关闭自动上传开关
+### 调试 Vim Log
 
-#### 配置介绍
 
-`:let g:qin_sync_rc = '.sync'` 配置文件名，缺省值为 '.sync'
+```
+vim -V9myVim.log
+```
 
-#### 如何使用
 
-1. 使用 vim 打开项目后，运行 :QinSync ，根据系统提示输入配置信息
-  * host     服务器域名
-  * admin    登录用户名
-  * pass     登录密码
-  * remote   服务器部署路径
+### How to use.
 
-2. 保存任意文件，会根据配置自动上传至对应目录
+- `let g:sftp_config_file = 'sftp-config.json'`, 默认使用的是和 Sublime 中的 SFTP 插件配置文件名是一样的。可以通过在 `~/.vimrc` 中修改这个文件来配置配置自己的文件。
 
-3. 通过运行 `:QinToggle` 关闭或开启自动上传
-  * 若关闭自动上传，通过 `:QinSync` 手动上传
+### Upload
 
-#### 如何安装
+```
+<leader>, "upload current file to remote
+SUpload <localFileOrFolder> <remoteFileOrFolder>
+SDown <remoteFileOrFolder> <localFileOrFolder>
+```
 
-1. 推荐使用 [vim-plug](https://github.com/junegunn/vim-plug)
-  * `Plug 'elrrrrrrr/qin-sync'`
+### TODO
 
-#### TODO
+- [x] dir create -p
+- [x] json parse support sublime.
+- [ ] refactor move sftp to autoload folder.
+- [ ] update cryptography version, and add requirements.
+- [ ] Add ignore folds.
+- [ ] Add Sync from remote file
+  1. SDownloadFrom
+    ```
+        command! -nargs=* SDownloadFrom :call sftp#upload
+        command! -nargs=* SUploadTo :call sftp#upload
+    ```
+  2. SUploadTo
+- [ ] doc
+- [ ] i18n, translate
 
-1. 回显上传结果
-2. 全局配置文件
-
-#### License
-
-MIT

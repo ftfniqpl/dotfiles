@@ -343,15 +343,15 @@ Bundle 'davidhalter/jedi-vim'
     let g:jedi#show_call_signatures=0
     let g:jedi#auto_vim_configuration=0
 
-    let g:jedi#popup_on_dot = 0  "关闭点的弹出
+    let g:jedi#popup_on_dot = 1  "关闭点的弹出
     let g:jedi#popup_select_first = 1 "关闭默认选择第一个
 
-    let g:jedi#goto_command = "<leader>d" "跳转
-    let g:jedi#goto_assignments_command = "<leader>m" "跳转
-    let g:jedi#documentation_command = "K"
-    let g:jedi#usages_command = "<leader><leader>n" "使用用例
-    "let g:jedi#completions_command = "<C-i>"
-    let g:jedi#rename_command = "<leader>r" "撤销变量
+    let g:jedi#goto_command = "<leader>d" "跳转, 可以查看指定函数的定义, Ctrl+O返回
+    let g:jedi#goto_assignments_command = "<leader>m" "跳转 到指定函数的导入包位置
+    let g:jedi#documentation_command = "K" "查看函数的文档
+    let g:jedi#usages_command = "<leader><leader>n" "查看函数的使用用例
+    let g:jedi#completions_command = "<C-N>" "补全, 单词太长可以按这个键快速完成
+    let g:jedi#rename_command = "<leader>r" "撤销变量, 重新命名
     "自动添加pdb调试
     map <leader>b Oimport pdb; pdb.set_trace() # BREAKPOINT<C-c>
 " }}}
@@ -377,13 +377,15 @@ Bundle 'godlygeek/tabular'
     vnoremap <silent> <leader>a, :Tabularize /,\zs<CR>
 " }}}
 
-Bundle 'hesselbom/vim-sftp'
 " sftp 上传
-" vim-hsftp {{{
-    nnoremap <silent> <leader>up :UploadFile<CR>
-    nnoremap <silent> <leader>do :DownloadFile<CR>
-    nnoremap <silent> <leader>ud :UploadDir<CR>
-" }}}
+Bundle 'AaronFlower/vim-sftp'
+" Bundle 'hesselbom/vim-sftp'
+"" sftp 上传
+"" vim-hsftp {{{
+"    nnoremap <silent> <leader>up :UploadFile<CR>
+"    nnoremap <silent> <leader>do :DownloadFile<CR>
+"    nnoremap <silent> <leader>ud :UploadDir<CR>
+"" }}}
 
 set history=2000            "history存储长度
 
