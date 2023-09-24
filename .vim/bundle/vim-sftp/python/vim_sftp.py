@@ -8,16 +8,30 @@ SftpCache = {}
 # 判断 当前目录 是否有 sftp.json 文件
 def _load_config():
     ''' Find the sftp config file '''
-    # file_name = vim.current.buffer.name
-    # cur_dir = os.path.dirname(file_name)
-    plugin_root_dir = vim.eval('s:plugin_root_dir')
-    config_file = os.path.join(plugin_root_dir, '..', 'sftp.json')
-    try:
-        with open(config_file, 'r') as cfile:
-            config = json.load(cfile)
-        return config_file, config
-    except:
-        return None
+    file_name = vim.current.buffer.name
+    cur_dir = os.path.dirname(file_name)
+    config_file = ''
+    find_config_file = False
+    # 先从当前文件的目录往上找 .sftp文件, 如果找到则停止
+    while cur_dir:
+        config_file = f"{cur_dir}/.sftp"
+        if os.path.isfile(config_file):
+            find_config_file = True
+            break
+        if cur_dir == '/':
+            break
+        cur_dir = os.path.dirname(cur_dir)
+
+    if find_config_file:
+        #plugin_root_dir = vim.eval('s:plugin_root_dir')
+        #config_file = os.path.join(plugin_root_dir, '..', 'sftp.json')
+        try:
+            with open(config_file, 'r') as cfile:
+                config = json.load(cfile)
+            return config_file, config
+        except:
+            return None, None
+    return None, None
 
 def connect(config):
     ''' 根据 config 信息建立连接并缓存起来。'''
@@ -153,6 +167,7 @@ def sftp_file():
         config['config_file'] = config_file
         sftp_put(file_name, config_file, config)
         vim.command("echo 'upload succeed!'")
+    vim.command("echom 'not found .sftp file and exit.'")
 
 def sftp_folder():
     # 上传当前目录的所有文件
@@ -165,6 +180,7 @@ def sftp_folder():
         for f in all_files:
             sftp_put(f, config_file, config)
         vim.command("echo 'upload folder succeed!'")
+    vim.command("echom 'not found .sftp file and exit.'")
 
 def sftp_clear():
     if SftpCache:

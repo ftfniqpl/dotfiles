@@ -4,7 +4,7 @@
 
 " Upload current file to remote server.
 function! sftp#SftpUploadFile()
-    python3 vim_sftp.sftp_put()
+    python3 vim_sftp.sftp_file()
 endfunction
 " Upload folder to remote server
 function! sftp#SftpUploadFolder()
