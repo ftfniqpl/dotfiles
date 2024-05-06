@@ -27,12 +27,16 @@ if g:jedi#auto_initialization
         execute 'nnoremap <buffer> '.g:jedi#rename_command.' :call jedi#rename()<CR>'
         execute 'vnoremap <buffer> '.g:jedi#rename_command.' :call jedi#rename_visual()<CR>'
     endif
+    if len(g:jedi#rename_command_keep_name)
+        execute 'nnoremap <buffer> '.g:jedi#rename_command_keep_name.' :call jedi#rename_keep_name()<CR>'
+        execute 'vnoremap <buffer> '.g:jedi#rename_command_keep_name.' :call jedi#rename_visual_keep_name()<CR>'
+    endif
     " documentation/pydoc
     if len(g:jedi#documentation_command)
         execute 'nnoremap <silent> <buffer>'.g:jedi#documentation_command.' :call jedi#show_documentation()<CR>'
     endif
 
-    if g:jedi#show_call_signatures > 0 && has('conceal')
+    if g:jedi#show_call_signatures > 0
         call jedi#configure_call_signatures()
     endif
 
@@ -44,14 +48,15 @@ if g:jedi#auto_initialization
         inoremap <silent> <buffer> <space> <C-R>=jedi#smart_auto_mappings()<CR>
     end
 
-    if g:jedi#auto_close_doc
+    if g:jedi#auto_close_doc && (&g:completeopt =~# '\<preview\>' && &g:completeopt !~# '\<popup\>')
         " close preview if its still open after insert
         augroup jedi_preview
-            autocmd! InsertLeave <buffer> if pumvisible() == 0|pclose|endif
+            if v:version > 704
+                autocmd CompleteDone <buffer> pclose
+            else
+                autocmd InsertLeave <buffer> if pumvisible() == 0|pclose|endif
+                autocmd CursorMovedI <buffer> if pumvisible() == 0|pclose|endif
+            endif
         augroup END
     endif
-    augroup jedi_usages
-        autocmd! TextChanged <buffer> call jedi#remove_usages()
-        autocmd! InsertEnter <buffer> call jedi#remove_usages()
-    augroup END
 endif

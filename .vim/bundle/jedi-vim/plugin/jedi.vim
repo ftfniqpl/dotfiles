@@ -33,7 +33,12 @@ if get(g:, 'jedi#auto_vim_configuration', 1)
             redir END
         endif
         if len(split(completeopt, '\n')) == 1
-            set completeopt=menuone,longest,preview
+            set completeopt=menuone,longest
+            if v:version > 801 || (v:version == 801  && has('patch-8.1.1882'))
+              set completeopt+=popup
+            else
+              set completeopt+=preview
+            endif
         endif
     endfunction
     if has('nvim')
@@ -52,6 +57,10 @@ endif
 
 " Pyimport command
 command! -nargs=1 -complete=custom,jedi#py_import_completions Pyimport :call jedi#py_import(<q-args>)
+
+command! -nargs=? -complete=file JediChooseEnvironment :call jedi#choose_environment(<q-args>)
+command! -nargs=? -complete=file JediLoadProject :call jedi#load_project(<q-args>)
+
 
 function! s:jedi_debug_info()
     " Ensure the autoload file has been loaded (and ignore any errors, which

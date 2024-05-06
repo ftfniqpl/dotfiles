@@ -1,0 +1,1 @@
+sudo iptables -t nat -A PREROUTING -p tcp -i ens160 -d 10.0.0.118 --dport 8888 -j DNAT --to 10.0.0.118:443

@@ -337,7 +337,7 @@ Bundle 'terryma/vim-multiple-cursors'
 " }}}
 
 Bundle 'davidhalter/jedi-vim'
-" python自动补全
+" python自动补全 python3需要安装jedi==0.18.0
 " jedi-vim {{{
     let g:pymode_folding = 0
     let g:jedi#show_call_signatures=0
@@ -482,17 +482,17 @@ set expandtab               "将tab自动转化成空格
 set shiftround              "缩进时,取整
 
 autocmd FileType html set ai
-autocmd FileType html set sw=2
-autocmd FileType html set ts=2
-autocmd FileType html set sts=2
+autocmd FileType html set sw=4
+autocmd FileType html set ts=4
+autocmd FileType html set sts=4
 autocmd FileType js set ai
-autocmd FileType js set sw=2
-autocmd FileType js set ts=2
-autocmd FileType js set sts=2
+autocmd FileType js set sw=4
+autocmd FileType js set ts=4
+autocmd FileType js set sts=4
 autocmd FileType css set ai
-autocmd FileType css set sw=2
-autocmd FileType css set ts=2
-autocmd FileType css set sts=2
+autocmd FileType css set sw=4
+autocmd FileType css set ts=4
+autocmd FileType css set sts=4
 
 set hidden                  "允许在未保存的修改时切换buffer
 set wildmode=list:longest

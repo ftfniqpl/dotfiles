@@ -1,5 +1,8 @@
 
-. /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/Library/Frameworks/Python.framework/Versions/3.9/bin/virtualenv
+. /Library/Frameworks/Python.framework/Versions/3.9/bin/virtualenvwrapper.sh
 
 export TERM=xterm-256color
 
